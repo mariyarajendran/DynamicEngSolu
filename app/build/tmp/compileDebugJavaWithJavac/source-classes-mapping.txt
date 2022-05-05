@@ -1,0 +1,77 @@
+com/task/DataBinderMapperImpl.java
+ com.task.DataBinderMapperImpl
+ com.task.DataBinderMapperImpl$InnerBrLookup
+ com.task.DataBinderMapperImpl$InnerLayoutIdLookup
+com/task/BuildConfig.java
+ com.task.BuildConfig
+com/task/databinding/DetailListFragmentBindingImpl.java
+ com.task.databinding.DetailListFragmentBindingImpl
+androidx/databinding/DataBinderMapperImpl.java
+ androidx.databinding.DataBinderMapperImpl
+com/task/utils/font/CustomFontRadioButtonRegular.java
+ com.task.utils.font.CustomFontRadioButtonRegular
+com/task/utils/font/CustomFontTextViewRegular.java
+ com.task.utils.font.CustomFontTextViewRegular
+androidx/databinding/library/baseAdapters/BR.java
+ androidx.databinding.library.baseAdapters.BR
+com/task/databinding/RegistrationFragmentBinding.java
+ com.task.databinding.RegistrationFragmentBinding
+com/task/DataBindingTriggerClass.java
+ com.task.DataBindingTriggerClass
+com/task/databinding/ActivityHomeBinding.java
+ com.task.databinding.ActivityHomeBinding
+com/task/databinding/DetailFragmentBinding.java
+ com.task.databinding.DetailFragmentBinding
+com/task/utils/font/CustomFontEditTextRegular.java
+ com.task.utils.font.CustomFontEditTextRegular
+com/task/databinding/LayoutAppHeaderBinding.java
+ com.task.databinding.LayoutAppHeaderBinding
+com/task/databinding/FragmentHomeBinding.java
+ com.task.databinding.FragmentHomeBinding
+com/task/utils/font/CustomFontButtonBold.java
+ com.task.utils.font.CustomFontButtonBold
+com/task/BR.java
+ com.task.BR
+com/task/data/remote/moshiFactories/MyStandardJsonAdapters.java
+ com.task.data.remote.moshiFactories.MyStandardJsonAdapters
+ com.task.data.remote.moshiFactories.MyStandardJsonAdapters$1
+ com.task.data.remote.moshiFactories.MyStandardJsonAdapters$10
+ com.task.data.remote.moshiFactories.MyStandardJsonAdapters$11
+ com.task.data.remote.moshiFactories.MyStandardJsonAdapters$2
+ com.task.data.remote.moshiFactories.MyStandardJsonAdapters$3
+ com.task.data.remote.moshiFactories.MyStandardJsonAdapters$4
+ com.task.data.remote.moshiFactories.MyStandardJsonAdapters$5
+ com.task.data.remote.moshiFactories.MyStandardJsonAdapters$6
+ com.task.data.remote.moshiFactories.MyStandardJsonAdapters$7
+ com.task.data.remote.moshiFactories.MyStandardJsonAdapters$8
+ com.task.data.remote.moshiFactories.MyStandardJsonAdapters$9
+ com.task.data.remote.moshiFactories.MyStandardJsonAdapters$EnumJsonAdapter
+ com.task.data.remote.moshiFactories.MyStandardJsonAdapters$ObjectJsonAdapter
+com/task/databinding/ActivitySplashBinding.java
+ com.task.databinding.ActivitySplashBinding
+com/task/databinding/DetailListFragmentBinding.java
+ com.task.databinding.DetailListFragmentBinding
+com/task/databinding/ItemHomeDetailBinding.java
+ com.task.databinding.ItemHomeDetailBinding
+com/task/databinding/LanguageFragmentBindingImpl.java
+ com.task.databinding.LanguageFragmentBindingImpl
+com/task/databinding/RegistrationFragmentBindingImpl.java
+ com.task.databinding.RegistrationFragmentBindingImpl
+com/task/databinding/ItemHomeBinding.java
+ com.task.databinding.ItemHomeBinding
+com/task/databinding/ItemLanguageBinding.java
+ com.task.databinding.ItemLanguageBinding
+com/task/utils/font/CustomFontTextViewBold.java
+ com.task.utils.font.CustomFontTextViewBold
+com/task/utils/font/CustomFontTextViewLight.java
+ com.task.utils.font.CustomFontTextViewLight
+com/task/databinding/DialogHelperBinding.java
+ com.task.databinding.DialogHelperBinding
+com/task/databinding/DetailFragmentBindingImpl.java
+ com.task.databinding.DetailFragmentBindingImpl
+androidx/databinding/DataBindingComponent.java
+ androidx.databinding.DataBindingComponent
+com/task/databinding/LanguageFragmentBinding.java
+ com.task.databinding.LanguageFragmentBinding
+com/task/databinding/FragmentHomeBindingImpl.java
+ com.task.databinding.FragmentHomeBindingImpl

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/registrationFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.task.ui.components.fragment.HomeFragment"
+        android:label="@string/label_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_detailListFragment"
+            app:destination="@id/detailListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailListFragment"
+        android:name="com.task.ui.components.fragment.DetailListFragment"
+        android:label="@string/label_home"
+        tools:layout="@layout/detail_list_fragment">
+        <action
+            android:id="@+id/action_detailListFragment_to_detailFragment"
+            app:destination="@+id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.task.ui.components.fragment.DetailFragment"
+        android:label="@string/label_home"
+        tools:layout="@layout/detail_fragment" />
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.task.ui.components.fragment.RegistrationFragment"
+        android:label="@string/label_home"
+        tools:layout="@layout/registration_fragment" />
+    <fragment
+        android:id="@+id/languageFragment"
+        android:name="com.task.ui.components.fragment.LanguageFragment"
+        android:label="@string/label_home"
+        tools:layout="@layout/language_fragment" />
+</navigation>
