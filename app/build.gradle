@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         multiDexEnabled = true
-        applicationId "com.task"
+        applicationId "com.dynamiceng.solu"
         minSdkVersion 16
         targetSdkVersion 31
         versionCode 1
