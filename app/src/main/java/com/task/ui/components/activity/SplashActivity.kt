@@ -6,7 +6,6 @@ import android.os.Handler
 import com.task.R
 import com.task.ui.base.BaseActivity
 
-
 class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,15 +21,15 @@ class SplashActivity : BaseActivity() {
     }
 
     override fun init() {
-        redirectToHome()
+        redirectToLogin()
     }
 
-    private fun redirectToHome() {
-        Handler().postDelayed(Runnable {
-            val mainIntent = Intent(this@SplashActivity, HomeActivity::class.java)
+    private fun redirectToLogin() {
+        Handler().postDelayed({
+            val mainIntent = Intent(this@SplashActivity, LoginActivity::class.java)
             this@SplashActivity.startActivity(mainIntent)
             this@SplashActivity.finish()
-        }, 5000)
+        }, 3000)
     }
 
 }

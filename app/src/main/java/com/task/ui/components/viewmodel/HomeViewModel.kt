@@ -15,38 +15,38 @@ class HomeViewModel : BaseViewModel() {
 
     fun homeData(): MutableList<HomeListModel> {
         val homeListModel1 = HomeListModel(
-            "ABOUT CANCER",
+            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
             "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
             R.drawable.cancer2
         )
         val homeListModel2 = HomeListModel(
-            "CANCER PREVENTION",
+            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
             "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
             R.drawable.cancer1
         )
         val homeListModel3 = HomeListModel(
-            "ABOUT CANCER",
+            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
             "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
             R.drawable.cancer2
         )
         val homeListModel4 = HomeListModel(
-            "CANCER PREVENTION",
+            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
             "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
             R.drawable.cancer1
         )
         val homeListModel5 = HomeListModel(
-            "ABOUT CANCER",
+            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
             "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
             R.drawable.cancer2
         )
         val homeListModel6 = HomeListModel(
-            "CANCER PREVENTION",
+            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
             "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
             R.drawable.cancer1
         )
 
         val homeListModel7 = HomeListModel(
-            "ABOUT CANCER",
+            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
             "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
             R.drawable.cancer2
         )

@@ -56,7 +56,7 @@ class DetailListFragment : BaseFragment(), View.OnClickListener {
 
     override fun appHeaderAction() {
         binding.inlHomeDetailHeader.tvTitleAppHeader.text =
-            returnResString(R.string.lable_about_cancer)
+            returnResString(R.string.app_name)
     }
 
     override fun observeViewModel() {

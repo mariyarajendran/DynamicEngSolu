@@ -31,9 +31,9 @@
         android:layout_marginEnd="@dimen/_6sdp"
         android:gravity="center"
         android:padding="@dimen/_8sdp"
-        android:text="@string/lable_cancer_institute"
+        android:text="@string/app_name"
         android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,8 +59,8 @@
         android:layout_marginRight="@dimen/_6sdp"
         android:layout_marginBottom="@dimen/_6sdp"
         android:src="@drawable/ic_setting"
-        app:layout_constraintEnd_toEndOf="parent"
         android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/glTopHomePage"
         app:tint="@color/white" />
 </androidx.constraintlayout.widget.ConstraintLayout>

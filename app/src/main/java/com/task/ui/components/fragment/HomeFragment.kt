@@ -72,7 +72,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener {
 
     override fun appHeaderAction() {
         binding.inlHomeHeader.tvTitleAppHeader.text =
-            returnResString(R.string.lable_cancer_institute)
+            returnResString(R.string.app_name)
         binding.inlHomeHeader.imgCloseAppHeader.toGone()
         binding.inlHomeHeader.imgLeftArrowAppHeader.toGone()
         binding.inlHomeHeader.imgSettingAppHeader.toVisible()

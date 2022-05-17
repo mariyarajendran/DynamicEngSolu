@@ -16,63 +16,63 @@ class DetailListViewModel : BaseViewModel() {
 
     fun homeDetailData(): MutableList<HomeListDetailModel> {
         val homeDetailListModel1 = HomeListDetailModel(
-            "Cervical Cancer",
-            "A malignant tumour of the cervix, the lower most part of the uterus.",
+            "Lorem ipsum",
+            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit.",
             R.drawable.cancer_detail
         )
         val homeDetailListModel2 = HomeListDetailModel(
-            "Cervical Cancer",
-            "A malignant tumour of the cervix, the lower most part of the uterus.",
+            "Lorem ipsum",
+            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit.",
             R.drawable.cancer_detail
         )
         val homeDetailListModel3 = HomeListDetailModel(
-            "Cervical Cancer",
-            "A malignant tumour of the cervix, the lower most part of the uterus.",
+            "Lorem ipsum",
+            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit.",
             R.drawable.cancer_detail
         )
         val homeDetailListModel4 = HomeListDetailModel(
-            "Cervical Cancer",
-            "A malignant tumour of the cervix, the lower most part of the uterus.",
+            "Lorem ipsum",
+            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit.",
             R.drawable.cancer_detail
         )
         val homeDetailListModel5 = HomeListDetailModel(
-            "Cervical Cancer",
-            "A malignant tumour of the cervix, the lower most part of the uterus.",
+            "Lorem ipsum",
+            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit.",
             R.drawable.cancer_detail
         )
         val homeDetailListModel6 = HomeListDetailModel(
-            "Cervical Cancer",
-            "A malignant tumour of the cervix, the lower most part of the uterus.",
+            "Lorem ipsum",
+            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit.",
             R.drawable.cancer_detail
         )
         val homeDetailListModel7 = HomeListDetailModel(
-            "Cervical Cancer",
-            "A malignant tumour of the cervix, the lower most part of the uterus.",
+            "Lorem ipsum",
+            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit.",
             R.drawable.cancer_detail
         )
         val homeDetailListModel8 = HomeListDetailModel(
-            "Cervical Cancer",
-            "A malignant tumour of the cervix, the lower most part of the uterus.",
+            "Lorem ipsum",
+            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit.",
             R.drawable.cancer_detail
         )
         val homeDetailListModel9 = HomeListDetailModel(
-            "Cervical Cancer",
-            "A malignant tumour of the cervix, the lower most part of the uterus.",
+            "Lorem ipsum",
+            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit.",
             R.drawable.cancer_detail
         )
         val homeDetailListModel10 = HomeListDetailModel(
-            "Cervical Cancer",
-            "A malignant tumour of the cervix, the lower most part of the uterus.",
+            "Lorem ipsum",
+            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit.",
             R.drawable.cancer_detail
         )
         val homeDetailListModel11 = HomeListDetailModel(
-            "Cervical Cancer",
-            "A malignant tumour of the cervix, the lower most part of the uterus.",
+            "Lorem ipsum",
+            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit.",
             R.drawable.cancer_detail
         )
         val homeDetailListModel12 = HomeListDetailModel(
-            "Cervical Cancer",
-            "A malignant tumour of the cervix, the lower most part of the uterus.",
+            "Lorem ipsum",
+            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit.",
             R.drawable.cancer_detail
         )
         val homeDetailDataList = mutableListOf<HomeListDetailModel>()

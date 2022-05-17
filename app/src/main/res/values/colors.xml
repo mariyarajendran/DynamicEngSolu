@@ -13,4 +13,8 @@
     <color name="black_two">#131313</color>
     <color name="blur_black">#99000000</color>
     <color name="btn_start_color">#DD2ECCFA</color>
+    <color name="primary">#1085d1</color>
+    <color name="colorAliceBlue">#F7FCFE</color>
+    <color name="colorPrimary">#2E3F50</color>
+    <color name="colorLightGrey">#515151</color>
 </resources>
