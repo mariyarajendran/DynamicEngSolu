@@ -1,10 +1,12 @@
 package com.task
 
-import androidx.multidex.MultiDexApplication
+import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
-open class App : MultiDexApplication() {
+@HiltAndroidApp
+open class App : Application() {
     override fun onCreate() {
         super.onCreate()
+
     }
 }

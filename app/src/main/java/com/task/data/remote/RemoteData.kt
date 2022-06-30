@@ -1,8 +1,8 @@
 package com.task.data.remote
 
 import com.task.data.Resource
-import com.task.data.dto.credential.login.LoginRequest
-import com.task.data.dto.credential.login.LoginResponse
+import com.task.data.dto.login.LoginRequest
+import com.task.data.dto.login.LoginResponse
 import com.task.data.error.NETWORK_ERROR
 import com.task.data.error.NO_INTERNET_CONNECTION
 import com.task.data.remote.service.CredentialService
@@ -17,12 +17,12 @@ constructor(
     private val serviceGenerator: ServiceGenerator,
     private val networkConnectivity: NetworkConnectivity
 ) : RemoteDataSource {
-    override suspend fun requestLogin(loginRequest: LoginRequest): Resource<LoginResponse> {
+    override suspend fun requestLogin(loginRequest: HashMap<String, String>): Resource<LoginResponse> {
         val loginService = serviceGenerator.createService(CredentialService::class.java)
         return when (val response = processCall { loginService.fetchLogin(loginRequest) }) {
             is LoginResponse -> {
-                when (response.status) {
-                    true -> {
+                when (response.status_code) {
+                    "1" -> {
                         Resource.Success(data = response)
                     }
                     else -> {

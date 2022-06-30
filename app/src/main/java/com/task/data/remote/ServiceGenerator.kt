@@ -31,8 +31,8 @@ class ServiceGenerator @Inject constructor() {
         val original = chain.request()
 
         val request = original.newBuilder()
-            .header(contentType, contentTypeValue)
-            .addHeader(languageCode, Locale.getDefault().language)
+            //.header(contentType, contentTypeValue)
+            //.addHeader(languageCode, Locale.getDefault().language)
             .method(original.method, original.body)
             .build()
         chain.proceed(request)
