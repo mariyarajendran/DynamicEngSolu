@@ -5,6 +5,7 @@ import com.task.data.dto.login.LoginRequest
 import com.task.data.dto.login.LoginResponse
 import com.task.data.error.NETWORK_ERROR
 import com.task.data.error.NO_INTERNET_CONNECTION
+import com.task.data.local.LocalData
 import com.task.data.remote.service.CredentialService
 import com.task.utils.*
 import retrofit2.Response
@@ -15,7 +16,8 @@ import javax.inject.Inject
 class RemoteData @Inject
 constructor(
     private val serviceGenerator: ServiceGenerator,
-    private val networkConnectivity: NetworkConnectivity
+    private val networkConnectivity: NetworkConnectivity,
+    private val localRepository: LocalData
 ) : RemoteDataSource {
     override suspend fun requestLogin(loginRequest: HashMap<String, String>): Resource<LoginResponse> {
         val loginService = serviceGenerator.createService(CredentialService::class.java)
@@ -23,6 +25,8 @@ constructor(
             is LoginResponse -> {
                 when (response.status_code) {
                     "1" -> {
+                        localRepository.putLoginResponseData(response)
+                        localRepository.putLoginSession(true)
                         Resource.Success(data = response)
                     }
                     else -> {

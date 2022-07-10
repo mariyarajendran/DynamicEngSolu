@@ -19,6 +19,7 @@ import com.task.utils.SingleEvent
 import com.task.utils.observeEvent
 import com.task.utils.toGone
 import com.task.utils.toVisible
+import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

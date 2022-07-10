@@ -5,6 +5,8 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
+import com.task.data.local.LocalData
+import javax.inject.Inject
 
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -12,6 +14,8 @@ abstract class BaseActivity : AppCompatActivity() {
     protected abstract fun initViewBinding()
     protected abstract fun init()
 
+    @Inject
+    lateinit var localRepository: LocalData
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()

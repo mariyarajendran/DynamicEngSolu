@@ -12,6 +12,7 @@ import com.task.data.dto.login.LoginResponse
 import com.task.data.error.PASS_WORD_ERROR
 import com.task.data.error.USER_NAME_ERROR
 import com.task.ui.base.BaseViewModel
+import com.task.utils.EnumUtils
 import com.task.utils.NetworkConnectivity
 import com.task.utils.RegexUtils.isValidEmail
 import com.task.utils.SingleEvent
@@ -64,6 +65,8 @@ class RegistrationViewModel @Inject constructor(
                 val loginRequest = HashMap<String, String>()
                 loginRequest["username"] = userEmail
                 loginRequest["password"] = passWord
+                loginRequest["action"] = EnumUtils.LOGIN_ACTION.value
+                //val loginRequest = LoginRequest("login_authentication", userEmail, passWord)
                 wrapEspressoIdlingResource {
                     mDataRepositoryRepository.doLogin(
                         loginRequest
@@ -73,6 +76,10 @@ class RegistrationViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun getLoginSession(): Boolean {
+        return localRepository.getLoginSession()
     }
 
 }

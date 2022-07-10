@@ -1,13 +1,12 @@
 package com.task.data
 
-import com.task.data.dto.login.LoginRequest
 import com.task.data.dto.login.LoginResponse
 import com.task.data.remote.RemoteData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
-import kotlinx.coroutines.flow.flowOn
 
 class DataRepository @Inject constructor(
     private val remoteRepository: RemoteData,
