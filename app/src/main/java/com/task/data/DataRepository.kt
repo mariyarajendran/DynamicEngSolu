@@ -1,6 +1,7 @@
 package com.task.data
 
 import com.task.data.dto.login.LoginResponse
+import com.task.data.dto.project.ProjectResponse
 import com.task.data.remote.RemoteData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -15,6 +16,16 @@ class DataRepository @Inject constructor(
     override suspend fun doLogin(loginRequest: HashMap<String, String>): Flow<Resource<LoginResponse>> {
         return flow {
             emit(remoteRepository.requestLogin(loginRequest))
+        }.flowOn(ioDispatcher)
+    }
+
+    override suspend fun userBasedProject(
+        action: String,
+        userId: String,
+        orgId: String
+    ): Flow<Resource<ProjectResponse>> {
+        return flow {
+            emit(remoteRepository.userBasedProject(action, userId, orgId))
         }.flowOn(ioDispatcher)
     }
 }

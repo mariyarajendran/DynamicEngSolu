@@ -11,6 +11,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import com.task.R
 import com.task.ui.components.callback.PopupMenuCallback
+import dagger.hilt.android.AndroidEntryPoint
 
 abstract class BaseFragment : Fragment() {
 

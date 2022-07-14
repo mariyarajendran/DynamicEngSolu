@@ -1,13 +1,14 @@
 package com.task.data.remote
 
 import com.task.data.Resource
-import com.task.data.dto.login.LoginRequest
 import com.task.data.dto.login.LoginResponse
+import com.task.data.dto.project.ProjectResponse
 import com.task.data.error.NETWORK_ERROR
 import com.task.data.error.NO_INTERNET_CONNECTION
 import com.task.data.local.LocalData
 import com.task.data.remote.service.CredentialService
-import com.task.utils.*
+import com.task.data.remote.service.FeedService
+import com.task.utils.NetworkConnectivity
 import retrofit2.Response
 import java.io.IOException
 import javax.inject.Inject
@@ -27,6 +28,30 @@ constructor(
                     "1" -> {
                         localRepository.putLoginResponseData(response)
                         localRepository.putLoginSession(true)
+                        Resource.Success(data = response)
+                    }
+                    else -> {
+                        Resource.Failure(failureData = response)
+                    }
+                }
+            }
+            else -> {
+                Resource.DataError(errorCode = response as Int)
+            }
+        }
+    }
+
+    override suspend fun userBasedProject(
+        action: String,
+        userId: String,
+        orgId: String
+    ): Resource<ProjectResponse> {
+        val feedService = serviceGenerator.createService(FeedService::class.java)
+        return when (val response =
+            processCall { feedService.userBasedProject(action, userId, orgId) }) {
+            is ProjectResponse -> {
+                when (response.status_code) {
+                    "1" -> {
                         Resource.Success(data = response)
                     }
                     else -> {

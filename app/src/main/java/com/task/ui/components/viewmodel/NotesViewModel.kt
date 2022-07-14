@@ -3,15 +3,67 @@ package com.task.ui.components.viewmodel
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.task.R
+import com.task.data.DataRepository
+import com.task.data.DataRepositorySource
+import com.task.data.Resource
+import com.task.data.dto.login.LoginResponse
 import com.task.data.dto.network.HomeListModel
+import com.task.data.dto.project.ProjectResponse
 import com.task.ui.base.BaseViewModel
+import com.task.utils.NetworkConnectivity
 import com.task.utils.SingleEvent
+import com.task.utils.wrapEspressoIdlingResource
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NotesViewModel : BaseViewModel() {
+@HiltViewModel
+class NotesViewModel @Inject constructor(
+    private val mDataRepository: DataRepository,
+    private val mDataRepositoryRepository: DataRepositorySource,
+    private val mNetworkConnectivity: NetworkConnectivity,
+) : BaseViewModel() {
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     private val openHomeListPrivate = MutableLiveData<SingleEvent<HomeListModel>>()
     val openHomeList: LiveData<SingleEvent<HomeListModel>> get() = openHomeListPrivate
+
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    private val projectLiveDataPrivate = MutableLiveData<Resource<ProjectResponse>>()
+    val projectLiveData: LiveData<Resource<ProjectResponse>> get() = projectLiveDataPrivate
+
+
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    private val showToastPrivate = MutableLiveData<SingleEvent<Any>>()
+    val showToast: LiveData<SingleEvent<Any>> get() = showToastPrivate
+
+    fun showToastMessage(errorCode: Int) {
+        val error = errorManager.getError(errorCode)
+        showToastPrivate.value = SingleEvent(error.description)
+    }
+
+    fun showFailureToastMessage(error: String) {
+        showToastPrivate.value = SingleEvent(error)
+    }
+
+    fun userBasedProject(
+        action: String,
+        userId: String,
+        orgId: String
+    ) {
+        viewModelScope.launch {
+            projectLiveDataPrivate.value = Resource.Loading()
+            wrapEspressoIdlingResource {
+                mDataRepositoryRepository.userBasedProject(
+                    action, userId, orgId
+                ).collect {
+                    projectLiveDataPrivate.value = it
+                }
+            }
+        }
+    }
 
     fun homeData(): MutableList<HomeListModel> {
         val homeListModel1 = HomeListModel(
@@ -66,6 +118,10 @@ class NotesViewModel : BaseViewModel() {
         position: Int
     ) {
         openHomeListPrivate.value = SingleEvent(homeListModel[position])
+    }
+
+    fun getLoginResponseDataSession(): LoginResponse {
+        return localRepository.getLoginResponseData()
     }
 
 }

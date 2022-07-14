@@ -11,8 +11,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.task.R
 import com.task.databinding.ActivityHomeBinding
 import com.task.ui.base.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeActivity : BaseActivity() {
     var binding: ActivityHomeBinding? = null
     private var mNavController: NavController? = null
