@@ -4,13 +4,17 @@ import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.task.R
 import com.task.data.DataRepository
 import com.task.data.DataRepositorySource
 import com.task.data.Resource
+import com.task.data.dto.chapter.ChapterData
+import com.task.data.dto.chapter.ChapterResponse
 import com.task.data.dto.login.LoginResponse
 import com.task.data.dto.network.HomeListModel
+import com.task.data.dto.project.ProjectData
 import com.task.data.dto.project.ProjectResponse
+import com.task.data.dto.subject.SubjectData
+import com.task.data.dto.subject.SubjectResponse
 import com.task.ui.base.BaseViewModel
 import com.task.utils.NetworkConnectivity
 import com.task.utils.SingleEvent
@@ -30,10 +34,35 @@ class NotesViewModel @Inject constructor(
     private val openHomeListPrivate = MutableLiveData<SingleEvent<HomeListModel>>()
     val openHomeList: LiveData<SingleEvent<HomeListModel>> get() = openHomeListPrivate
 
+    ///project
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    private val openProjectListPrivate = MutableLiveData<SingleEvent<ProjectData>>()
+    val openProjectList: LiveData<SingleEvent<ProjectData>> get() = openProjectListPrivate
+
+
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     private val projectLiveDataPrivate = MutableLiveData<Resource<ProjectResponse>>()
     val projectLiveData: LiveData<Resource<ProjectResponse>> get() = projectLiveDataPrivate
 
+    ///subject
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    private val openSubjectListPrivate = MutableLiveData<SingleEvent<SubjectData>>()
+    val openSubjectList: LiveData<SingleEvent<SubjectData>> get() = openSubjectListPrivate
+
+
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    private val subjectLiveDataPrivate = MutableLiveData<Resource<SubjectResponse>>()
+    val subjectLiveData: LiveData<Resource<SubjectResponse>> get() = subjectLiveDataPrivate
+
+    ///chapter
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    private val openChapterListPrivate = MutableLiveData<SingleEvent<ChapterData>>()
+    val openChapterList: LiveData<SingleEvent<ChapterData>> get() = openChapterListPrivate
+
+
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    private val chapterLiveDataPrivate = MutableLiveData<Resource<ChapterResponse>>()
+    val chapterLiveData: LiveData<Resource<ChapterResponse>> get() = chapterLiveDataPrivate
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     private val showToastPrivate = MutableLiveData<SingleEvent<Any>>()
@@ -65,59 +94,60 @@ class NotesViewModel @Inject constructor(
         }
     }
 
-    fun homeData(): MutableList<HomeListModel> {
-        val homeListModel1 = HomeListModel(
-            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
-            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
-            R.drawable.cancer2
-        )
-        val homeListModel2 = HomeListModel(
-            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
-            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
-            R.drawable.cancer1
-        )
-        val homeListModel3 = HomeListModel(
-            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
-            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
-            R.drawable.cancer2
-        )
-        val homeListModel4 = HomeListModel(
-            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
-            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
-            R.drawable.cancer1
-        )
-        val homeListModel5 = HomeListModel(
-            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
-            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
-            R.drawable.cancer2
-        )
-        val homeListModel6 = HomeListModel(
-            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
-            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
-            R.drawable.cancer1
-        )
 
-        val homeListModel7 = HomeListModel(
-            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
-            "Lorem ipsum dolor sit elit amet, consectetur adipiscing elit",
-            R.drawable.cancer2
-        )
-        val homeDatList = mutableListOf<HomeListModel>()
-        homeDatList.add(homeListModel1)
-        homeDatList.add(homeListModel2)
-        homeDatList.add(homeListModel3)
-        homeDatList.add(homeListModel4)
-        homeDatList.add(homeListModel5)
-        homeDatList.add(homeListModel6)
-        homeDatList.add(homeListModel7)
-        return homeDatList
+    fun userBasedSubject(
+        action: String,
+        projectId: String,
+        orgId: String
+    ) {
+        viewModelScope.launch {
+            subjectLiveDataPrivate.value = Resource.Loading()
+            wrapEspressoIdlingResource {
+                mDataRepositoryRepository.userBasedSubject(
+                    action, projectId, orgId
+                ).collect {
+                    subjectLiveDataPrivate.value = it
+                }
+            }
+        }
     }
 
-    fun onHomeSelected(
-        homeListModel: MutableList<HomeListModel>,
+    fun userBasedChapter(
+        action: String,
+        subjectId: String,
+        orgId: String
+    ) {
+        viewModelScope.launch {
+            chapterLiveDataPrivate.value = Resource.Loading()
+            wrapEspressoIdlingResource {
+                mDataRepositoryRepository.userBasedChapter(
+                    action, subjectId, orgId
+                ).collect {
+                    chapterLiveDataPrivate.value = it
+                }
+            }
+        }
+    }
+
+    fun onProjectSelected(
+        projectData: MutableList<ProjectData>,
         position: Int
     ) {
-        openHomeListPrivate.value = SingleEvent(homeListModel[position])
+        openProjectListPrivate.value = SingleEvent(projectData[position])
+    }
+
+    fun onSubjectSelected(
+        subjectData: MutableList<SubjectData>,
+        position: Int
+    ) {
+        openSubjectListPrivate.value = SingleEvent(subjectData[position])
+    }
+
+    fun onChapterSelected(
+        chapterData: MutableList<ChapterData>,
+        position: Int
+    ) {
+        openChapterListPrivate.value = SingleEvent(chapterData[position])
     }
 
     fun getLoginResponseDataSession(): LoginResponse {

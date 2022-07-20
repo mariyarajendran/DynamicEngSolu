@@ -9,7 +9,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.task.R
 import com.task.data.Resource
-import com.task.data.dto.network.HomeListModel
+import com.task.data.dto.project.ProjectData
 import com.task.data.dto.project.ProjectResponse
 import com.task.databinding.NotesFragmentBinding
 import com.task.ui.base.BaseFragment
@@ -58,7 +58,7 @@ class NotesFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun observeViewModel() {
-        observeEvent(notesViewModel.openHomeList, ::observerHomeClickEvent)
+        observeEvent(notesViewModel.openProjectList, ::observerProjectClickEvent)
         observe(notesViewModel.projectLiveData, ::handleProjectDetailResult)
     }
 
@@ -115,10 +115,13 @@ class NotesFragment : BaseFragment(), View.OnClickListener {
     }
 
 
-    private fun observerHomeClickEvent(event: SingleEvent<HomeListModel>) {
+    private fun observerProjectClickEvent(event: SingleEvent<ProjectData>) {
         event.getContentIfNotHandled()?.let {
+            val bundle = Bundle()
+            bundle.putString(EnumUtils.PROJECT_ID.value, it.project_id)
+            bundle.putString(EnumUtils.PROJECT_NAME.value, it.project_name)
             Navigation.findNavController(binding.root)
-                .navigate(R.id.detailListFragment)
+                .navigate(R.id.subjectFragment, bundle)
         }
     }
 }

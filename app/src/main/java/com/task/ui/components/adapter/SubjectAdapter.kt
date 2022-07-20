@@ -4,40 +4,40 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.task.data.dto.project.ProjectData
-import com.task.databinding.ItemNotesBinding
-import com.task.ui.components.adapter.viewholder.NotesViewHolder
+import com.task.data.dto.subject.SubjectData
+import com.task.databinding.ItemSubjectBinding
+import com.task.ui.components.adapter.viewholder.SubjectViewHolder
 import com.task.ui.components.callback.OnItemTapCallback
 import com.task.ui.components.viewmodel.NotesViewModel
 
-class NotesAdapter(
+class SubjectAdapter(
     private val context: Context,
-    private val projectData: MutableList<ProjectData>,
+    private val subjectData: MutableList<SubjectData>,
     private val notesViewModel: NotesViewModel
-) : RecyclerView.Adapter<NotesViewHolder>() {
+) : RecyclerView.Adapter<SubjectViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubjectViewHolder {
         val itemBinding =
-            ItemNotesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return NotesViewHolder(itemBinding)
+            ItemSubjectBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return SubjectViewHolder(itemBinding)
     }
 
-    override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SubjectViewHolder, position: Int) {
         holder.bind(
             context,
-            projectData,
+            subjectData,
             position,
             onItemTapCallback
         )
     }
 
     override fun getItemCount(): Int {
-        return projectData.size
+        return subjectData.size
     }
 
     private val onItemTapCallback: OnItemTapCallback = object : OnItemTapCallback {
         override fun onItemTap(position: Int) {
-             notesViewModel.onProjectSelected(projectData, position)
+            notesViewModel.onSubjectSelected(subjectData, position)
         }
     }
 }

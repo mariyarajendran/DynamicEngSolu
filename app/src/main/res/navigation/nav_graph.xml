@@ -42,7 +42,16 @@
         android:name="com.task.ui.components.fragment.NotesFragment"
         android:label="@string/label_notes"
         tools:layout="@layout/notes_fragment" />
-
+    <fragment
+        android:id="@+id/subjectFragment"
+        android:name="com.task.ui.components.fragment.SubjectFragment"
+        android:label="@string/label_subject"
+        tools:layout="@layout/fragment_subject" />
+    <fragment
+        android:id="@+id/chapterFragment"
+        android:name="com.task.ui.components.fragment.ChapterFragment"
+        android:label="@string/label_subject"
+        tools:layout="@layout/fragment_chapter" />
     <fragment
         android:id="@+id/videoFragment"
         android:name="com.task.ui.components.fragment.VideoFragment"

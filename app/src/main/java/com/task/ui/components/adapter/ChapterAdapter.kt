@@ -4,40 +4,40 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.task.data.dto.project.ProjectData
+import com.task.data.dto.chapter.ChapterData
 import com.task.databinding.ItemNotesBinding
-import com.task.ui.components.adapter.viewholder.NotesViewHolder
+import com.task.ui.components.adapter.viewholder.ChapterViewHolder
 import com.task.ui.components.callback.OnItemTapCallback
 import com.task.ui.components.viewmodel.NotesViewModel
 
-class NotesAdapter(
+class ChapterAdapter(
     private val context: Context,
-    private val projectData: MutableList<ProjectData>,
+    private val chapterData: MutableList<ChapterData>,
     private val notesViewModel: NotesViewModel
-) : RecyclerView.Adapter<NotesViewHolder>() {
+) : RecyclerView.Adapter<ChapterViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChapterViewHolder {
         val itemBinding =
             ItemNotesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return NotesViewHolder(itemBinding)
+        return ChapterViewHolder(itemBinding)
     }
 
-    override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ChapterViewHolder, position: Int) {
         holder.bind(
             context,
-            projectData,
+            chapterData,
             position,
             onItemTapCallback
         )
     }
 
     override fun getItemCount(): Int {
-        return projectData.size
+        return chapterData.size
     }
 
     private val onItemTapCallback: OnItemTapCallback = object : OnItemTapCallback {
         override fun onItemTap(position: Int) {
-             notesViewModel.onProjectSelected(projectData, position)
+            notesViewModel.onChapterSelected(chapterData, position)
         }
     }
 }
