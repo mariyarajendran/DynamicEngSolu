@@ -23,11 +23,6 @@
             app:destination="@+id/detailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/detailFragment"
-        android:name="com.task.ui.components.fragment.DetailFragment"
-        android:label="@string/label_home"
-        tools:layout="@layout/detail_fragment" />
-    <fragment
         android:id="@+id/registrationFragment"
         android:name="com.task.ui.components.fragment.RegistrationFragment"
         android:label="@string/label_home"
@@ -57,4 +52,14 @@
         android:name="com.task.ui.components.fragment.VideoFragment"
         android:label="@string/label_video"
         tools:layout="@layout/video_fragment" />
+    <fragment
+        android:id="@+id/pdfNotesListFragment"
+        android:name="com.task.ui.components.fragment.PDFNotesListFragment"
+        android:label="@string/label_pdf_list"
+        tools:layout="@layout/fragment_pdf_notes_list" />
+    <fragment
+        android:id="@+id/pdfNotesFragment"
+        android:name="com.task.ui.components.fragment.PDFNotesFragment"
+        android:label="@string/label_pdf"
+        tools:layout="@layout/fragment_pdf_notes" />
 </navigation>

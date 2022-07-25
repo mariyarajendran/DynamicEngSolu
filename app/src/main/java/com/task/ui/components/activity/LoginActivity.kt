@@ -60,23 +60,24 @@ class LoginActivity : BaseActivity() {
 
     private fun handleLoginResult(status: Resource<LoginResponse>) {
         when (status) {
-            is Resource.Loading -> binding.loaderView.toVisible()
+            is Resource.Loading -> binding.progressBar.toVisible()
             is Resource.Success -> status.data?.let {
-                binding.loaderView.toGone()
+                binding.progressBar.toGone()
                 if (it.status_code == "1") {
                     loginViewModel.showFailureToastMessage(it.msg)
+                    redirectToHome()
                 } else {
                     loginViewModel.showFailureToastMessage(it.msg)
                 }
             }
             is Resource.DataError -> {
-                binding.loaderView.toGone()
+                binding.progressBar.toGone()
                 status.errorCode?.let {
                     loginViewModel.showToastMessage(it)
                 }
             }
             is Resource.Failure -> status.data?.let {
-                binding.loaderView.toGone()
+                binding.progressBar.toGone()
             }
             else -> {
             }

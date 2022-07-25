@@ -51,4 +51,6 @@
     <string name="invalid_username">Invalid e-mail address</string>
     <string name="invalid_password">The password must be> 4 characters long</string>
     <string name="label_subject">Subject</string>
+    <string name="label_pdf_list">Pdf List</string>
+    <string name="label_pdf">Pdf</string>
 </resources>

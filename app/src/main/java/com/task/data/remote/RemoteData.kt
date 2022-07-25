@@ -3,6 +3,7 @@ package com.task.data.remote
 import com.task.data.Resource
 import com.task.data.dto.chapter.ChapterResponse
 import com.task.data.dto.login.LoginResponse
+import com.task.data.dto.pdfnotes.PdfNotesResponse
 import com.task.data.dto.project.ProjectResponse
 import com.task.data.dto.subject.SubjectResponse
 import com.task.data.error.NETWORK_ERROR
@@ -100,6 +101,31 @@ constructor(
         return when (val response =
             processCall { feedService.userBasedChapter(action, subjectId, orgId) }) {
             is ChapterResponse -> {
+                when (response.status_code) {
+                    "1" -> {
+                        Resource.Success(data = response)
+                    }
+                    else -> {
+                        Resource.Failure(failureData = response)
+                    }
+                }
+            }
+            else -> {
+                Resource.DataError(errorCode = response as Int)
+            }
+        }
+    }
+
+    override suspend fun userBasedPdfNotes(
+        action: String,
+        subjectId: String,
+        orgId: String,
+        chapterId: String
+    ): Resource<PdfNotesResponse> {
+        val feedService = serviceGenerator.createService(FeedService::class.java)
+        return when (val response =
+            processCall { feedService.userBasedPdfNotes(action, subjectId, orgId, chapterId) }) {
+            is PdfNotesResponse -> {
                 when (response.status_code) {
                     "1" -> {
                         Resource.Success(data = response)

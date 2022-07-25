@@ -6,30 +6,31 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.task.R
 import com.task.data.Resource
-import com.task.data.dto.chapter.ChapterData
-import com.task.data.dto.chapter.ChapterResponse
-import com.task.databinding.FragmentChapterBinding
+import com.task.data.dto.pdfnotes.PdfNotesData
+import com.task.data.dto.pdfnotes.PdfNotesResponse
+import com.task.databinding.FragmentPdfNotesListBinding
 import com.task.ui.base.BaseFragment
-import com.task.ui.components.adapter.ChapterAdapter
+import com.task.ui.components.adapter.PdfNotesAdapter
 import com.task.ui.components.viewmodel.NotesViewModel
 import com.task.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ChapterFragment : BaseFragment(), View.OnClickListener {
+class PDFNotesListFragment : BaseFragment(), View.OnClickListener {
     private lateinit var notesViewModel: NotesViewModel
-    private lateinit var binding: FragmentChapterBinding
-    private lateinit var chapterAdapter: ChapterAdapter
+    private lateinit var binding: FragmentPdfNotesListBinding
+    private lateinit var pdfNotesAdapter: PdfNotesAdapter
+    private var chapterId = "0"
     private var subjectId = "0"
-    private var subjectName = "";
+    private var chapterName = "";
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentChapterBinding.inflate(layoutInflater, container, false)
+        binding = FragmentPdfNotesListBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -41,11 +42,11 @@ class ChapterFragment : BaseFragment(), View.OnClickListener {
         init()
         initRecyclerviewAdapter()
         observeViewModel()
-        doUserBasedChapter()
+        doUserBasedPdfNotes()
     }
 
     override fun initOnClickListener() {
-        binding.inlChapterHeader.imgSettingAppHeader.setOnClickListener(this)
+        binding.inlPdfNotesListHeader.imgSettingAppHeader.setOnClickListener(this)
     }
 
     override fun init() {
@@ -53,46 +54,47 @@ class ChapterFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun appHeaderAction() {
-        binding.inlChapterHeader.imgCloseAppHeader.toGone()
-        binding.inlChapterHeader.imgLeftArrowAppHeader.toGone()
-        binding.inlChapterHeader.imgSettingAppHeader.toGone()
+        binding.inlPdfNotesListHeader.imgCloseAppHeader.toGone()
+        binding.inlPdfNotesListHeader.imgLeftArrowAppHeader.toGone()
+        binding.inlPdfNotesListHeader.imgSettingAppHeader.toGone()
     }
 
     override fun observeViewModel() {
-        observeEvent(notesViewModel.openChapterList, ::observerChapterClickEvent)
-        observe(notesViewModel.chapterLiveData, ::handleChapterDetailResult)
+        observeEvent(notesViewModel.openPdfNotes, ::observerPdfNotesClickEvent)
+        observe(notesViewModel.pdfNotesLiveData, ::handlePdfNotesResult)
     }
 
     override fun onClick(v: View) {
 
     }
 
-    /// get chapter list api...
-    private fun doUserBasedChapter() {
-        notesViewModel.userBasedChapter(
-            EnumUtils.CHAPTER_ACTION.value,
+    /// get pdf notes list api...
+    private fun doUserBasedPdfNotes() {
+        notesViewModel.userBasedPdfNotes(
+            EnumUtils.PDF_NOTES_ACTION.value,
             subjectId,
-            notesViewModel.getLoginResponseDataSession().org_id
+            notesViewModel.getLoginResponseDataSession().org_id,
+            chapterId,
         )
     }
 
     private fun initRecyclerviewAdapter() {
-        val layoutManager = GridLayoutManager(activity, 2)
-        binding.rvChapter.layoutManager = layoutManager
-        //binding.rvChapter.setHasFixedSize(true)
+        val layoutManager = LinearLayoutManager(activity)
+        binding.rvPdfNotesList.layoutManager = layoutManager
+        binding.rvPdfNotesList.setHasFixedSize(true)
     }
 
-    private fun bindDrawerData(chapterListsResponse: ChapterResponse) {
-        if (!(chapterListsResponse.data.isNullOrEmpty())) {
-            chapterAdapter =
+    private fun bindDrawerData(pdfNotesResponse: PdfNotesResponse) {
+        if (!(pdfNotesResponse.data.isNullOrEmpty())) {
+            pdfNotesAdapter =
                 context?.let {
-                    ChapterAdapter(it, chapterListsResponse.data, notesViewModel)
+                    PdfNotesAdapter(it, pdfNotesResponse.data, notesViewModel)
                 }!!
-            binding.rvChapter.adapter = chapterAdapter
+            binding.rvPdfNotesList.adapter = pdfNotesAdapter
         }
     }
 
-    private fun handleChapterDetailResult(status: Resource<ChapterResponse>) {
+    private fun handlePdfNotesResult(status: Resource<PdfNotesResponse>) {
         when (status) {
             is Resource.Loading -> binding.progressBar.toVisible()
 
@@ -113,33 +115,32 @@ class ChapterFragment : BaseFragment(), View.OnClickListener {
                 }
             }
             else -> {
-                binding.progressBar.toGone()
             }
         }
     }
 
 
-    private fun observerChapterClickEvent(event: SingleEvent<ChapterData>) {
+    private fun observerPdfNotesClickEvent(event: SingleEvent<PdfNotesData>) {
         event.getContentIfNotHandled()?.let {
             val bundle = Bundle()
-            bundle.putString(EnumUtils.CHAPTER_ID.value, it.chapter_id)
-            bundle.putString(EnumUtils.SUBJECT_ID.value, subjectId)
-            bundle.putString(EnumUtils.CHAPTER_NAME.value, it.chapter_name)
+            bundle.putString(EnumUtils.PDF_FILENAME.value, it.filename)
+            bundle.putString(EnumUtils.PDF_FILEPATH.value, it.path)
             Navigation.findNavController(binding.root)
-                .navigate(R.id.pdfNotesListFragment, bundle)
+                .navigate(R.id.pdfNotesFragment, bundle)
         }
     }
 
     private fun getArgumentData() {
         if (arguments != null) {
+            chapterId = arguments?.getString(EnumUtils.CHAPTER_ID.value).toString()
             subjectId = arguments?.getString(EnumUtils.SUBJECT_ID.value).toString()
-            subjectName = arguments?.getString(EnumUtils.SUBJECT_NAME.value).toString()
+            chapterName = arguments?.getString(EnumUtils.CHAPTER_NAME.value).toString()
             ///App Header Title
-            binding.inlChapterHeader.tvTitleAppHeader.text =
-                if (subjectName == "")
+            binding.inlPdfNotesListHeader.tvTitleAppHeader.text =
+                if (chapterName == "")
                     returnResString(R.string.app_name)
                 else
-                    subjectName
+                    chapterName
         }
     }
 }

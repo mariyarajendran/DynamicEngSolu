@@ -3,6 +3,7 @@ package com.task.data.remote
 import com.task.data.Resource
 import com.task.data.dto.chapter.ChapterResponse
 import com.task.data.dto.login.LoginResponse
+import com.task.data.dto.pdfnotes.PdfNotesResponse
 import com.task.data.dto.project.ProjectResponse
 import com.task.data.dto.subject.SubjectResponse
 
@@ -25,4 +26,11 @@ internal interface RemoteDataSource {
         subjectId: String,
         orgId: String
     ): Resource<ChapterResponse>
+
+    suspend fun userBasedPdfNotes(
+        action: String,
+        subjectId: String,
+        orgId: String,
+        chapterId: String
+    ): Resource<PdfNotesResponse>
 }

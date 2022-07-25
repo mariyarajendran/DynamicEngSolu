@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.task.databinding.VideoFragmentBinding
 import com.task.ui.base.BaseFragment
 import com.task.ui.components.viewmodel.LanguageViewModel
+import com.task.utils.toGone
+import com.task.utils.toVisible
 
 
 class VideoFragment : BaseFragment(), View.OnClickListener {
@@ -44,6 +46,9 @@ class VideoFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun appHeaderAction() {
+        binding.inlVideoHeader.imgCloseAppHeader.toGone()
+        binding.inlVideoHeader.imgLeftArrowAppHeader.toGone()
+        binding.inlVideoHeader.imgSettingAppHeader.toVisible()
 
     }
 

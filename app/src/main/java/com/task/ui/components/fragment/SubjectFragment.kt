@@ -55,7 +55,7 @@ class SubjectFragment : BaseFragment(), View.OnClickListener {
     override fun appHeaderAction() {
         binding.inlSubjectDetailHeader.imgCloseAppHeader.toGone()
         binding.inlSubjectDetailHeader.imgLeftArrowAppHeader.toGone()
-        binding.inlSubjectDetailHeader.imgSettingAppHeader.toVisible()
+        binding.inlSubjectDetailHeader.imgSettingAppHeader.toGone()
     }
 
     override fun observeViewModel() {
@@ -94,18 +94,20 @@ class SubjectFragment : BaseFragment(), View.OnClickListener {
 
     private fun handleSubjectDetailResult(status: Resource<SubjectResponse>) {
         when (status) {
-            is Resource.Loading -> {
-            }
+            is Resource.Loading -> binding.progressBar.toVisible()
 
             is Resource.Success -> status.data?.let {
+                binding.progressBar.toGone()
                 bindDrawerData(it)
             }
             is Resource.DataError -> {
+                binding.progressBar.toGone()
                 status.errorCode?.let {
                     notesViewModel.showToastMessage(it)
                 }
             }
             is Resource.Failure -> status.data?.let {
+                binding.progressBar.toGone()
                 it.let {
                     notesViewModel.showFailureToastMessage(it.msg)
                 }

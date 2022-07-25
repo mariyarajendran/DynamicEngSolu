@@ -93,23 +93,26 @@ class NotesFragment : BaseFragment(), View.OnClickListener {
 
     private fun handleProjectDetailResult(status: Resource<ProjectResponse>) {
         when (status) {
-            is Resource.Loading -> {
-            }
+            is Resource.Loading -> binding.progressBar.toVisible()
 
             is Resource.Success -> status.data?.let {
+                binding.progressBar.toGone()
                 bindDrawerData(it)
             }
             is Resource.DataError -> {
+                binding.progressBar.toGone()
                 status.errorCode?.let {
                     notesViewModel.showToastMessage(it)
                 }
             }
             is Resource.Failure -> status.data?.let {
                 it.let {
+                    binding.progressBar.toGone()
                     notesViewModel.showFailureToastMessage(it.msg)
                 }
             }
             else -> {
+                binding.progressBar.toGone()
             }
         }
     }

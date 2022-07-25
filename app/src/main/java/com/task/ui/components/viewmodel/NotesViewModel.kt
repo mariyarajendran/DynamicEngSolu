@@ -11,6 +11,8 @@ import com.task.data.dto.chapter.ChapterData
 import com.task.data.dto.chapter.ChapterResponse
 import com.task.data.dto.login.LoginResponse
 import com.task.data.dto.network.HomeListModel
+import com.task.data.dto.pdfnotes.PdfNotesData
+import com.task.data.dto.pdfnotes.PdfNotesResponse
 import com.task.data.dto.project.ProjectData
 import com.task.data.dto.project.ProjectResponse
 import com.task.data.dto.subject.SubjectData
@@ -63,6 +65,17 @@ class NotesViewModel @Inject constructor(
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     private val chapterLiveDataPrivate = MutableLiveData<Resource<ChapterResponse>>()
     val chapterLiveData: LiveData<Resource<ChapterResponse>> get() = chapterLiveDataPrivate
+
+    ///notes pdf
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    private val openPdfNotesPrivate = MutableLiveData<SingleEvent<PdfNotesData>>()
+    val openPdfNotes: LiveData<SingleEvent<PdfNotesData>> get() = openPdfNotesPrivate
+
+
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    private val pdfNotesLiveDataPrivate = MutableLiveData<Resource<PdfNotesResponse>>()
+    val pdfNotesLiveData: LiveData<Resource<PdfNotesResponse>> get() = pdfNotesLiveDataPrivate
+
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     private val showToastPrivate = MutableLiveData<SingleEvent<Any>>()
@@ -129,6 +142,24 @@ class NotesViewModel @Inject constructor(
         }
     }
 
+    fun userBasedPdfNotes(
+        action: String,
+        subjectId: String,
+        orgId: String,
+        chapterId: String
+    ) {
+        viewModelScope.launch {
+            pdfNotesLiveDataPrivate.value = Resource.Loading()
+            wrapEspressoIdlingResource {
+                mDataRepositoryRepository.userBasedPdfNotes(
+                    action, subjectId, orgId, chapterId
+                ).collect {
+                    pdfNotesLiveDataPrivate.value = it
+                }
+            }
+        }
+    }
+
     fun onProjectSelected(
         projectData: MutableList<ProjectData>,
         position: Int
@@ -148,6 +179,14 @@ class NotesViewModel @Inject constructor(
         position: Int
     ) {
         openChapterListPrivate.value = SingleEvent(chapterData[position])
+    }
+
+
+    fun onNotesPdfSelected(
+        pdfNotesData: MutableList<PdfNotesData>,
+        position: Int
+    ) {
+        openPdfNotesPrivate.value = SingleEvent(pdfNotesData[position])
     }
 
     fun getLoginResponseDataSession(): LoginResponse {

@@ -60,7 +60,6 @@ class HomeFragment : BaseFragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModelHome = ViewModelProvider(this).get(HomeViewModel::class.java)
-        initRecyclerviewAdapter()
         observeViewModel()
     }
 
@@ -72,15 +71,14 @@ class HomeFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun appHeaderAction() {
-        binding.inlHomeHeader.tvTitleAppHeader.text =
-            returnResString(R.string.app_name)
         binding.inlHomeHeader.imgCloseAppHeader.toGone()
         binding.inlHomeHeader.imgLeftArrowAppHeader.toGone()
         binding.inlHomeHeader.imgSettingAppHeader.toVisible()
+
     }
 
     override fun observeViewModel() {
-        observeEvent(viewModelHome.openHomeList, ::observerHomeClickEvent)
+
     }
 
     companion object {
@@ -104,31 +102,8 @@ class HomeFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when (v) {
-            binding.inlHomeHeader.imgSettingAppHeader -> {
-                showMenu(v, R.menu.setting_menu, object : PopupMenuCallback {
-                    override fun onTapLanguageSetting() {
-                        Navigation.findNavController(binding.root)
-                            .navigate(R.id.languageFragment)
-                    }
-                })
-            }
-        }
+
     }
 
-    private fun initRecyclerviewAdapter() {
-        val layoutManager = GridLayoutManager(activity, 2)
-        binding.rvHome.layoutManager = layoutManager
-        adapter = context?.let {
-            HomeAdapter(it, viewModelHome.homeData(), viewModelHome)
-        }
-        binding.rvHome.adapter = adapter
-    }
 
-    private fun observerHomeClickEvent(event: SingleEvent<HomeListModel>) {
-        event.getContentIfNotHandled()?.let {
-            Navigation.findNavController(binding.root)
-                .navigate(R.id.detailListFragment)
-        }
-    }
 }

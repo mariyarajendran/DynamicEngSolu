@@ -2,6 +2,7 @@ package com.task.data
 
 import com.task.data.dto.chapter.ChapterResponse
 import com.task.data.dto.login.LoginResponse
+import com.task.data.dto.pdfnotes.PdfNotesResponse
 import com.task.data.dto.project.ProjectResponse
 import com.task.data.dto.subject.SubjectResponse
 import com.task.data.remote.RemoteData
@@ -48,6 +49,17 @@ class DataRepository @Inject constructor(
     ): Flow<Resource<ChapterResponse>> {
         return flow {
             emit(remoteRepository.userBasedChapter(action, subjectId, orgId))
+        }
+    }
+
+    override suspend fun userBasedPdfNotes(
+        action: String,
+        subjectId: String,
+        orgId: String,
+        chapterId: String
+    ): Flow<Resource<PdfNotesResponse>> {
+        return flow {
+            emit(remoteRepository.userBasedPdfNotes(action, subjectId, orgId, chapterId))
         }
     }
 }

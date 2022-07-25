@@ -9,27 +9,26 @@
             type="android.view.View" />
     </data>
 
-    <ScrollView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@color/grey">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+
+        <include
+            android:id="@+id/inlVideoHeader"
+            layout="@layout/layout_app_header" />
+
+        <com.task.utils.font.CustomFontTextViewBold
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/grey">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/label_video"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-
-            <include
-                android:id="@+id/inlVideoHeader"
-                layout="@layout/layout_app_header" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

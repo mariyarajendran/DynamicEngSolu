@@ -1,6 +1,7 @@
 package com.task.data.remote.service
 
 import com.task.data.dto.chapter.ChapterResponse
+import com.task.data.dto.pdfnotes.PdfNotesResponse
 import com.task.data.dto.project.ProjectResponse
 import com.task.data.dto.subject.SubjectResponse
 import retrofit2.Response
@@ -29,4 +30,12 @@ interface FeedService {
         @Query(value = "subject_id") subjectId: String,
         @Query(value = "org_id") orgId: String
     ): Response<ChapterResponse>
+
+    @GET("dms/mobile_api.php")
+    suspend fun userBasedPdfNotes(
+        @Query(value = "action") action: String,
+        @Query(value = "subject_id") subjectId: String,
+        @Query(value = "org_id") orgId: String,
+        @Query(value = "chapter_id") chapterId: String,
+    ): Response<PdfNotesResponse>
 }
