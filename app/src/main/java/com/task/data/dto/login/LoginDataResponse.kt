@@ -1,4 +1,4 @@
-package com.task.data.dto.credential.login
+package com.task.data.dto.login
 
 val languageData = Language(id = 0, name = "", code = "")
 

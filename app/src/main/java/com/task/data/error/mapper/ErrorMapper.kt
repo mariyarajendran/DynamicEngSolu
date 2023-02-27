@@ -17,5 +17,7 @@ class ErrorMapper @Inject constructor(@ApplicationContext val context: Context) 
         get() = mapOf(
             Pair(NO_INTERNET_CONNECTION, getErrorString(R.string.no_internet)),
             Pair(NETWORK_ERROR, getErrorString(R.string.network_error)),
+            Pair(PASS_WORD_ERROR, getErrorString(R.string.invalid_password)),
+            Pair(USER_NAME_ERROR, getErrorString(R.string.invalid_username)),
         ).withDefault { getErrorString(R.string.network_error) }
 }

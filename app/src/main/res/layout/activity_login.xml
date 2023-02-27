@@ -40,7 +40,7 @@
             android:inputType="text|textNoSuggestions|textEmailAddress"
             android:paddingBottom="@dimen/_10sdp"
             android:singleLine="true"
-            android:text=""
+            android:text="dynamicengineering92@gmail.com"
             android:textColor="@color/grey"
             android:textColorHint="@color/grey"
             android:textSize="@dimen/_14sdp"
@@ -62,7 +62,7 @@
             android:inputType="textPassword"
             android:paddingBottom="@dimen/_10sdp"
             android:singleLine="true"
-            android:text=""
+            android:text="India!123"
             android:textColor="@color/grey"
             android:textColorHint="@color/grey"
             android:textSize="@dimen/_14sdp"
@@ -110,35 +110,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnLoginSubmit" />
 
-        <com.task.utils.font.CustomFontTextViewBold
-            android:id="@+id/tvLoginCreateAccount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_30sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/_30sdp"
-            android:layout_marginBottom="@dimen/_30sdp"
-            android:gravity="center"
-            android:text="@string/hint_create_account"
-            android:textColor="@color/grey"
-            android:textSize="@dimen/_15sdp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
         <RelativeLayout
-            android:id="@+id/loader_view"
+            android:id="@+id/progressBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true"
+            android:focusable="true"
             android:visibility="gone">
 
             <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true" />
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="@dimen/_130sdp"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/grey" />
         </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>

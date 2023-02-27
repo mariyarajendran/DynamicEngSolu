@@ -1,4 +1,8 @@
-package com.task.data.dto.credential.login
+package com.task.data.dto.login
 
 
-data class LoginRequest(val email: String = "", val password: String = "")
+data class LoginRequest(
+    val action: String = "",
+    val username: String = "",
+    val password: String = ""
+)
